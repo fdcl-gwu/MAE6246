@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Fall 2026 weekly topics and Python notebooks for MAE 6246, Linear Systems and Control.">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="MAE 6246 — Linear Systems and Control">
+    <meta property="og:description" content="Fall 2026 weekly topics and Python notebooks.">
+    <meta property="og:image" content="https://fdcl-gwu.github.io/MAE6246/og.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="MAE 6246 — Linear Systems and Control">
+    <meta name="twitter:description" content="Fall 2026 weekly topics and Python notebooks.">
+    <meta name="twitter:image" content="https://fdcl-gwu.github.io/MAE6246/og.png">
+    <title>MAE 6246 — Linear Systems and Control</title>
+    <link rel="icon" href="./favicon.svg">
+    <link rel="stylesheet" href="./styles.css">
+  </head>
+  <body>
+    <a class="skip-link" href="#schedule">Skip to weekly schedule</a>
+    <header class="site-header">
+      <div class="nav-shell">
+        <a class="course-mark" href="#top" aria-label="MAE 6246 home"><strong>MAE 6246</strong><span>Linear Systems and Control</span></a>
+        <nav class="site-nav" aria-label="Course navigation"><a href="#schedule">Schedule</a><a href="#resource-note">Materials</a><a href="#homework">Homework</a></nav>
+      </div>
+    </header>
+
+    <main id="top">
+      <section class="hero" aria-labelledby="course-title">
+        <div class="hero-inner">
+          <div class="hero-text">
+            <p class="eyebrow">Fall 2026 · George Washington University</p>
+            <h1 id="course-title">Linear Systems<br>and Control</h1>
+            <p class="hero-copy">A state-space approach to modeling, dynamics, feedback control, optimal control, and state estimation—with computation woven through the course.</p>
+            <div class="term-row" aria-label="Course details">
+              <span class="term-chip">Fridays</span><span class="term-chip">August 28 – December 4</span><span class="term-chip">Python + Jupyter</span><span class="term-chip">14 class meetings</span>
+            </div>
+          </div>
+          <figure class="hero-art"><img src="./og.png" alt="MAE 6246 Linear Systems and Control course artwork with a state-space phase portrait."></figure>
+        </div>
+      </section>
+
+      <div class="page-shell">
+        <section class="intro-grid" aria-label="Course-site information">
+          <article class="intro-card">
+            <h2>How to use this site</h2>
+            <p>Each week lists the mathematical ideas, the system concept they support, and a Python example. Notebook buttons will open an editable copy in Google Colab as materials are released.</p>
+          </article>
+          <aside class="intro-card" id="resource-note">
+            <h3>Material status</h3>
+            <p>Course notes, Colab notebooks, and homework will appear in each weekly card as they are released.</p>
+          </aside>
+        </section>
+
+        <section id="schedule" aria-labelledby="schedule-heading">
+          <div class="section-heading"><h2 id="schedule-heading">Weekly schedule</h2><p>Midterm: October 16 · No class: November 27</p></div>
+          <div class="schedule">
+            <article class="week-card">
+              <div class="week-meta"><span class="week-number">Week 1</span><time class="week-date" datetime="2026-08-28">August 28</time></div>
+              <div class="week-main"><h3>State-Space Models and Linearization</h3><ul class="topic-list"><li>State, input, and output variables</li><li>Nonlinear and LTI state models</li><li>Equilibria and operating points</li><li>Jacobian linearization</li><li>Span, independence, basis, and coordinates</li></ul></div>
+              <div class="python-panel"><span class="python-label">Python example</span><p>Simulate a nonlinear pendulum and compare local linearizations about its downward and upright equilibria.</p><div class="resource-actions"><a class="resource-link file-link is-pending" data-file="./notes/week01.pdf" data-released="false" data-ready-label="View course note" data-pending-label="Course note coming soon" href="#resource-note" aria-disabled="true"><span>Course note coming soon</span></a><a class="resource-link colab-link is-pending" data-notebook="notebooks/week01_pendulum.ipynb" data-released="false" data-pending-label="Notebook coming soon" href="#resource-note" aria-disabled="true"><span>Notebook coming soon</span></a><a class="resource-link file-link is-pending" data-file="./homework/homework01.pdf" data-released="false" data-ready-label="View homework" data-pending-label="Homework coming soon" href="#resource-note" aria-disabled="true"><span>Homework coming soon</span></a></div></div>
+            </article>
+
+            <article class="week-card">
+              <div class="week-meta"><span class="week-number">Week 2</span><time class="week-date" datetime="2026-09-04">September 4</time></div>
+              <div class="week-main"><h3>Linear Operators and Computational Linear Algebra</h3><ul class="topic-list"><li>Operators and matrix representations</li><li>Change of basis and similarity</li><li>Range, null space, and rank</li><li>Eigenstructure and modal coordinates</li><li>SVD, conditioning, and matrix functions</li></ul></div>
+              <div class="python-panel"><span class="python-label">Python example</span><p>Explore eigenvalue and SVD analyses of a nearly singular system and transform a mechanical model into modal coordinates.</p><div class="resource-actions"><a class="resource-link file-link is-pending" data-file="./notes/week02.pdf" data-released="false" data-ready-label="View course note" data-pending-label="Course note coming soon" href="#resource-note" aria-disabled="true"><span>Course note coming soon</span></a><a class="resource-link colab-link is-pending" data-notebook="notebooks/week02_computational_linear_algebra.ipynb" data-released="false" data-pending-label="Notebook coming soon" href="#resource-note" aria-disabled="true"><span>Notebook coming soon</span></a><a class="resource-link file-link is-pending" data-file="./homework/homework02.pdf" data-released="false" data-ready-label="View homework" data-pending-label="Homework coming soon" href="#resource-note" aria-disabled="true"><span>Homework coming soon</span></a></div></div>
+            </article>
+
+            <article class="week-card">
+              <div class="week-meta"><span class="week-number">Week 3</span><time class="week-date" datetime="2026-09-11">September 11</time></div>
+              <div class="week-main"><h3>Solutions of Continuous-Time Linear Systems</h3><ul class="topic-list"><li>Homogeneous and forced responses</li><li>Zero-input and zero-state responses</li><li>Matrix exponential</li><li>Laplace resolvent</li><li>Fundamental and state-transition matrices</li></ul></div>
+              <div class="python-panel"><span class="python-label">Python example</span><p>Compare matrix-exponential, numerical-integration, and input-response solutions, including a non-normal transient.</p><div class="resource-actions"><a class="resource-link file-link is-pending" data-file="./notes/week03.pdf" data-released="false" data-ready-label="View course note" data-pending-label="Course note coming soon" href="#resource-note" aria-disabled="true"><span>Course note coming soon</span></a><a class="resource-link colab-link is-pending" data-notebook="notebooks/week03_lti_solutions.ipynb" data-released="false" data-pending-label="Notebook coming soon" href="#resource-note" aria-disabled="true"><span>Notebook coming soon</span></a><a class="resource-link file-link is-pending" data-file="./homework/homework03.pdf" data-released="false" data-ready-label="View homework" data-pending-label="Homework coming soon" href="#resource-note" aria-disabled="true"><span>Homework coming soon</span></a></div></div>
+            </article>
+
+            <article class="week-card">
+              <div class="week-meta"><span class="week-number">Week 4</span><time class="week-date" datetime="2026-09-18">September 18</time></div>
+              <div class="week-main"><h3>Sampling, Discrete-Time Models, and Controllability</h3><ul class="topic-list"><li>Zero-order-hold discretization</li><li>Discrete-time state solution</li><li>Controllability matrix</li><li>Controllability Gramian and energy</li><li>PBH tests and conditioning</li></ul></div>
+              <div class="python-panel"><span class="python-label">Python example</span><p>Discretize a DC motor at several sampling rates, test controllability, and compare state-transfer energy.</p><div class="resource-actions"><a class="resource-link file-link is-pending" data-file="./notes/week04.pdf" data-released="false" data-ready-label="View course note" data-pending-label="Course note coming soon" href="#resource-note" aria-disabled="true"><span>Course note coming soon</span></a><a class="resource-link colab-link is-pending" data-notebook="notebooks/week04_controllability.ipynb" data-released="false" data-pending-label="Notebook coming soon" href="#resource-note" aria-disabled="true"><span>Notebook coming soon</span></a><a class="resource-link file-link is-pending" data-file="./homework/homework04.pdf" data-released="false" data-ready-label="View homework" data-pending-label="Homework coming soon" href="#resource-note" aria-disabled="true"><span>Homework coming soon</span></a></div></div>
+            </article>
+
+            <article class="week-card">
+              <div class="week-meta"><span class="week-number">Week 5</span><time class="week-date" datetime="2026-09-25">September 25</time></div>
+              <div class="week-main"><h3>Observability and State Reconstruction</h3><ul class="topic-list"><li>Observability and indistinguishable states</li><li>Observability matrix</li><li>Controllability–observability duality</li><li>Observability Gramian and PBH tests</li><li>Sensor placement and sensitivity</li></ul></div>
+              <div class="python-panel"><span class="python-label">Python example</span><p>Reconstruct an oscillator's initial state and compare sensor locations using observability singular values.</p><div class="resource-actions"><a class="resource-link file-link is-pending" data-file="./notes/week05.pdf" data-released="false" data-ready-label="View course note" data-pending-label="Course note coming soon" href="#resource-note" aria-disabled="true"><span>Course note coming soon</span></a><a class="resource-link colab-link is-pending" data-notebook="notebooks/week05_observability.ipynb" data-released="false" data-pending-label="Notebook coming soon" href="#resource-note" aria-disabled="true"><span>Notebook coming soon</span></a><a class="resource-link file-link is-pending" data-file="./homework/homework05.pdf" data-released="false" data-ready-label="View homework" data-pending-label="Homework coming soon" href="#resource-note" aria-disabled="true"><span>Homework coming soon</span></a></div></div>
+            </article>
+
+            <article class="week-card">
+              <div class="week-meta"><span class="week-number">Week 6</span><time class="week-date" datetime="2026-10-02">October 2</time></div>
+              <div class="week-main"><h3>Canonical Decompositions and Minimal Realization</h3><ul class="topic-list"><li>Controllable and observable canonical forms</li><li>Reachable and observable subspaces</li><li>Kalman decomposition</li><li>Input–output equivalence</li><li>Realization and minimal realization</li></ul></div>
+              <div class="python-panel"><span class="python-label">Python example</span><p>Remove unreachable and unobservable states and verify that the minimal model preserves the input–output response.</p><div class="resource-actions"><a class="resource-link file-link is-pending" data-file="./notes/week06.pdf" data-released="false" data-ready-label="View course note" data-pending-label="Course note coming soon" href="#resource-note" aria-disabled="true"><span>Course note coming soon</span></a><a class="resource-link colab-link is-pending" data-notebook="notebooks/week06_minimal_realization.ipynb" data-released="false" data-pending-label="Notebook coming soon" href="#resource-note" aria-disabled="true"><span>Notebook coming soon</span></a><a class="resource-link file-link is-pending" data-file="./homework/homework06.pdf" data-released="false" data-ready-label="View homework" data-pending-label="Homework coming soon" href="#resource-note" aria-disabled="true"><span>Homework coming soon</span></a></div></div>
+            </article>
+
+            <article class="week-card">
+              <div class="week-meta"><span class="week-number">Week 7</span><time class="week-date" datetime="2026-10-09">October 9</time></div>
+              <div class="week-main"><h3>Stability and Transient Behavior</h3><ul class="topic-list"><li>Lyapunov and asymptotic stability</li><li>Attractivity versus stability</li><li>LTI eigenvalue and Jordan criteria</li><li>Lyapunov equations</li><li>Non-normal transient amplification</li></ul></div>
+              <div class="python-panel"><span class="python-label">Python example</span><p>Solve a Lyapunov equation and compare stable systems with sharply different transient amplification.</p><div class="resource-actions"><a class="resource-link file-link is-pending" data-file="./notes/week07.pdf" data-released="false" data-ready-label="View course note" data-pending-label="Course note coming soon" href="#resource-note" aria-disabled="true"><span>Course note coming soon</span></a><a class="resource-link colab-link is-pending" data-notebook="notebooks/week07_stability.ipynb" data-released="false" data-pending-label="Notebook coming soon" href="#resource-note" aria-disabled="true"><span>Notebook coming soon</span></a><a class="resource-link file-link is-pending" data-file="./homework/homework07.pdf" data-released="false" data-ready-label="View homework" data-pending-label="Homework coming soon" href="#resource-note" aria-disabled="true"><span>Homework coming soon</span></a></div></div>
+            </article>
+
+            <article class="week-card special-card">
+              <div class="week-meta"><span class="week-number">Week 8</span><time class="week-date" datetime="2026-10-16">October 16</time></div>
+              <div class="week-main"><h3>Midterm Examination</h3><ul class="topic-list"><li>Coverage limited to Weeks 1–6</li><li>Modeling and linearization</li><li>Linear-system solutions</li><li>Controllability and observability</li><li>Canonical decompositions</li></ul></div>
+              <div class="python-panel"><span class="python-label">Review resources</span><p>Connect system matrices, numerical tests, and simulated responses from the first six weeks.</p><div class="resource-actions"><a class="resource-link file-link is-pending" data-file="./notes/week08_midterm_review.pdf" data-released="false" data-ready-label="View review guide" data-pending-label="Review guide coming soon" href="#resource-note" aria-disabled="true"><span>Review guide coming soon</span></a><a class="resource-link colab-link is-pending" data-notebook="notebooks/midterm_review.ipynb" data-released="false" data-ready-label="Open review notebook" data-pending-label="Review notebook coming soon" href="#resource-note" aria-disabled="true"><span>Review notebook coming soon</span></a><a class="resource-link file-link is-pending" data-file="" data-released="false" data-pending-label="No homework this week" href="#resource-note" aria-disabled="true"><span>No homework this week</span></a></div></div>
+            </article>
+
+            <article class="week-card">
+              <div class="week-meta"><span class="week-number">Week 9</span><time class="week-date" datetime="2026-10-23">October 23</time></div>
+              <div class="week-main"><h3>State Feedback and Pole Placement</h3><ul class="topic-list"><li>Closed-loop matrix and pole selection</li><li>Second-order transient specifications</li><li>Pole-placement theorem</li><li>Stabilizability</li><li>Reference tracking and integral action</li></ul></div>
+              <div class="python-panel"><span class="python-label">Python example</span><p>Stabilize an inverted pendulum and compare pole sets using settling time, gain size, and actuator effort.</p><div class="resource-actions"><a class="resource-link file-link is-pending" data-file="./notes/week09.pdf" data-released="false" data-ready-label="View course note" data-pending-label="Course note coming soon" href="#resource-note" aria-disabled="true"><span>Course note coming soon</span></a><a class="resource-link colab-link is-pending" data-notebook="notebooks/week09_pole_placement.ipynb" data-released="false" data-pending-label="Notebook coming soon" href="#resource-note" aria-disabled="true"><span>Notebook coming soon</span></a><a class="resource-link file-link is-pending" data-file="./homework/homework09.pdf" data-released="false" data-ready-label="View homework" data-pending-label="Homework coming soon" href="#resource-note" aria-disabled="true"><span>Homework coming soon</span></a></div></div>
+            </article>
+
+            <article class="week-card">
+              <div class="week-meta"><span class="week-number">Week 10</span><time class="week-date" datetime="2026-10-30">October 30</time></div>
+              <div class="week-main"><h3>State Observers and Output Feedback</h3><ul class="topic-list"><li>Prediction and measurement correction</li><li>Estimation-error dynamics</li><li>Observer pole placement</li><li>Separation principle</li><li>Noise and observer bandwidth</li></ul></div>
+              <div class="python-panel"><span class="python-label">Python example</span><p>Estimate unmeasured pendulum states and compare slow and aggressive observers under sensor noise.</p><div class="resource-actions"><a class="resource-link file-link is-pending" data-file="./notes/week10.pdf" data-released="false" data-ready-label="View course note" data-pending-label="Course note coming soon" href="#resource-note" aria-disabled="true"><span>Course note coming soon</span></a><a class="resource-link colab-link is-pending" data-notebook="notebooks/week10_observers.ipynb" data-released="false" data-pending-label="Notebook coming soon" href="#resource-note" aria-disabled="true"><span>Notebook coming soon</span></a><a class="resource-link file-link is-pending" data-file="./homework/homework10.pdf" data-released="false" data-ready-label="View homework" data-pending-label="Homework coming soon" href="#resource-note" aria-disabled="true"><span>Homework coming soon</span></a></div></div>
+            </article>
+
+            <article class="week-card">
+              <div class="week-meta"><span class="week-number">Week 11</span><time class="week-date" datetime="2026-11-06">November 6</time></div>
+              <div class="week-main"><h3>Optimal-Control Foundations and Finite-Horizon LQR</h3><ul class="topic-list"><li>Constrained optimization</li><li>Quadratic performance costs</li><li>Hamiltonian and costate</li><li>Stationarity and boundary conditions</li><li>Two-point boundary-value problem</li></ul></div>
+              <div class="python-panel"><span class="python-label">Python example</span><p>Solve finite-horizon regulation for a double integrator and visualize the state–effort tradeoff.</p><div class="resource-actions"><a class="resource-link file-link is-pending" data-file="./notes/week11.pdf" data-released="false" data-ready-label="View course note" data-pending-label="Course note coming soon" href="#resource-note" aria-disabled="true"><span>Course note coming soon</span></a><a class="resource-link colab-link is-pending" data-notebook="notebooks/week11_finite_horizon_lqr.ipynb" data-released="false" data-pending-label="Notebook coming soon" href="#resource-note" aria-disabled="true"><span>Notebook coming soon</span></a><a class="resource-link file-link is-pending" data-file="./homework/homework11.pdf" data-released="false" data-ready-label="View homework" data-pending-label="Homework coming soon" href="#resource-note" aria-disabled="true"><span>Homework coming soon</span></a></div></div>
+            </article>
+
+            <article class="week-card">
+              <div class="week-meta"><span class="week-number">Week 12</span><time class="week-date" datetime="2026-11-13">November 13</time></div>
+              <div class="week-main"><h3>Riccati Equations and Infinite-Horizon LQR</h3><ul class="topic-list"><li>Differential Riccati equation</li><li>Algebraic Riccati equation</li><li>Stabilizing solution</li><li>Continuous- and discrete-time LQR</li><li>Weight scaling, effort, and saturation</li></ul></div>
+              <div class="python-panel"><span class="python-label">Python example</span><p>Design LQR controllers for a cart–pendulum and sweep the weights to expose performance tradeoffs.</p><div class="resource-actions"><a class="resource-link file-link is-pending" data-file="./notes/week12.pdf" data-released="false" data-ready-label="View course note" data-pending-label="Course note coming soon" href="#resource-note" aria-disabled="true"><span>Course note coming soon</span></a><a class="resource-link colab-link is-pending" data-notebook="notebooks/week12_lqr.ipynb" data-released="false" data-pending-label="Notebook coming soon" href="#resource-note" aria-disabled="true"><span>Notebook coming soon</span></a><a class="resource-link file-link is-pending" data-file="./homework/homework12.pdf" data-released="false" data-ready-label="View homework" data-pending-label="Homework coming soon" href="#resource-note" aria-disabled="true"><span>Homework coming soon</span></a></div></div>
+            </article>
+
+            <article class="week-card">
+              <div class="week-meta"><span class="week-number">Week 13</span><time class="week-date" datetime="2026-11-20">November 20</time></div>
+              <div class="week-main"><h3>Kalman Filtering</h3><ul class="topic-list"><li>Stochastic state and measurement models</li><li>Noise covariance</li><li>Minimum-mean-square estimation</li><li>Continuous and discrete filters</li><li>Innovations and consistency</li></ul></div>
+              <div class="python-panel"><span class="python-label">Python example</span><p>Estimate position and velocity from noisy data and compare raw measurements, an observer, and a Kalman filter.</p><div class="resource-actions"><a class="resource-link file-link is-pending" data-file="./notes/week13.pdf" data-released="false" data-ready-label="View course note" data-pending-label="Course note coming soon" href="#resource-note" aria-disabled="true"><span>Course note coming soon</span></a><a class="resource-link colab-link is-pending" data-notebook="notebooks/week13_kalman_filter.ipynb" data-released="false" data-pending-label="Notebook coming soon" href="#resource-note" aria-disabled="true"><span>Notebook coming soon</span></a><a class="resource-link file-link is-pending" data-file="./homework/homework13.pdf" data-released="false" data-ready-label="View homework" data-pending-label="Homework coming soon" href="#resource-note" aria-disabled="true"><span>Homework coming soon</span></a></div></div>
+            </article>
+
+            <div class="break-card" role="note"><strong>Thanksgiving Break</strong><span>Friday, November 27 · No class</span></div>
+
+            <article class="week-card">
+              <div class="week-meta"><span class="week-number">Week 14</span><time class="week-date" datetime="2026-12-04">December 4</time></div>
+              <div class="week-main"><h3>LQG Synthesis and Course Integration</h3><ul class="topic-list"><li>LQR plus Kalman estimation</li><li>Separation principle</li><li>Controller and estimator comparisons</li><li>Model mismatch and saturation</li><li>Integrated analysis-to-simulation workflow</li></ul></div>
+              <div class="python-panel"><span class="python-label">Python example</span><p>Build an output-feedback LQG controller and compare nominal and mismatched-model performance.</p><div class="resource-actions"><a class="resource-link file-link is-pending" data-file="./notes/week14.pdf" data-released="false" data-ready-label="View course note" data-pending-label="Course note coming soon" href="#resource-note" aria-disabled="true"><span>Course note coming soon</span></a><a class="resource-link colab-link is-pending" data-notebook="notebooks/week14_lqg.ipynb" data-released="false" data-pending-label="Notebook coming soon" href="#resource-note" aria-disabled="true"><span>Notebook coming soon</span></a><a class="resource-link file-link is-pending" data-file="./homework/homework14.pdf" data-released="false" data-ready-label="View homework" data-pending-label="Homework coming soon" href="#resource-note" aria-disabled="true"><span>Homework coming soon</span></a></div></div>
+            </article>
+          </div>
+        </section>
+
+        <section class="homework-section" id="homework" aria-labelledby="homework-heading">
+          <h2 id="homework-heading">Homework</h2>
+          <p>Problem statements and starter notebooks will be released from the relevant weekly card. Each assignment may combine mathematical derivations with computational analysis.</p>
+          <div class="homework-flow">
+            <article><strong>1 · Download</strong><span>Open the assignment PDF and its starter notebook from the assigned week.</span></article>
+            <article><strong>2 · Complete</strong><span>Prepare one readable PDF for analytic work and one executed Jupyter notebook for Python work.</span></article>
+            <article><strong>3 · Submit</strong><span>Follow the submission link and due-date instructions provided with the assignment.</span></article>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <footer class="site-footer"><p><strong>MAE 6246 · Linear Systems and Control · Fall 2026</strong></p><p>Assignments, submissions, grades, and private materials are provided through Blackboard.</p></footer>
+    <script src="./site-config.js"></script>
+    <script src="./site.js"></script>
+  </body>
+</html>
