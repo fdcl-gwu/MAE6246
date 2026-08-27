@@ -5,9 +5,10 @@
   const branch = (config.githubBranch || "main").trim();
 
   function markPending(link) {
-    link.href = "#resource-note";
+    link.removeAttribute("href");
     link.classList.add("is-pending");
     link.setAttribute("aria-disabled", "true");
+    link.setAttribute("tabindex", "-1");
     link.querySelector("span").textContent = link.dataset.pendingLabel || "Coming soon";
   }
 
@@ -21,6 +22,7 @@
       link.rel = "noopener noreferrer";
       link.classList.remove("is-pending");
       link.removeAttribute("aria-disabled");
+      link.removeAttribute("tabindex");
       link.querySelector("span").textContent = link.dataset.readyLabel || "Open in Colab";
       return;
     }
@@ -35,6 +37,7 @@
       link.rel = "noopener noreferrer";
       link.classList.remove("is-pending");
       link.removeAttribute("aria-disabled");
+      link.removeAttribute("tabindex");
       link.querySelector("span").textContent = link.dataset.readyLabel || "Open file";
       return;
     }
