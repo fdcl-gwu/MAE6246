@@ -140,17 +140,11 @@ a { color: inherit; }
   margin: 0 0 0.65rem; font-family: Georgia, "Times New Roman", serif;
   font-size: clamp(1.8rem, 4vw, 2.6rem); font-weight: 500;
 }
-.homework-section > p { max-width: 760px; margin: 0; color: var(--muted); }
-.homework-card {
-  display: grid; grid-template-columns: minmax(0, 1fr) minmax(210px, 280px); gap: 1.5rem;
-  align-items: center; margin-top: 1.5rem; padding: 1.25rem; border: 1px solid var(--line);
-  border-radius: 0.85rem; background: white;
+.homework-card { margin-top: 1.5rem; }
+.homework-description { margin: 0; color: var(--muted); font-size: 0.92rem; line-height: 1.55; }
+.homework-penalty {
+  display: block; margin-top: 0.85rem; color: #76552b; font-size: 0.78rem; font-weight: 700; line-height: 1.35;
 }
-.homework-card h3 {
-  margin: 0.2rem 0 0.5rem; color: var(--navy); font-family: Georgia, "Times New Roman", serif;
-  font-size: 1.35rem; font-weight: 600;
-}
-.homework-card p { margin: 0; color: var(--muted); font-size: 0.92rem; }
 .homework-actions { align-content: center; }
 .homework-flow {
   display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-top: 1.5rem;
@@ -169,7 +163,6 @@ a { color: inherit; }
 @media (max-width: 650px) {
   .hero-inner { padding: 1.5rem 0 1.8rem; }
   .intro-grid { grid-template-columns: 1fr; }
-  .homework-card { grid-template-columns: 1fr; }
   .homework-flow { grid-template-columns: 1fr; }
   .week-card { grid-template-columns: 1fr; gap: 1rem; }
   .week-meta { padding: 0 0 0.75rem; border-right: 0; border-bottom: 1px solid var(--line); }
