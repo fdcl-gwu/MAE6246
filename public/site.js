@@ -44,4 +44,38 @@
 
     markPending(link);
   });
+
+  document.querySelectorAll(".notebook-download[data-download-url]").forEach((link) => {
+    link.addEventListener("click", async (event) => {
+      event.preventDefault();
+
+      const label = link.querySelector("span");
+      const originalLabel = label.textContent;
+      label.textContent = "Preparing download…";
+      link.setAttribute("aria-busy", "true");
+
+      try {
+        const response = await fetch(link.dataset.downloadUrl);
+        if (!response.ok) {
+          throw new Error(`Download failed with status ${response.status}`);
+        }
+
+        const notebook = await response.blob();
+        const objectUrl = URL.createObjectURL(notebook);
+        const saveLink = document.createElement("a");
+        saveLink.href = objectUrl;
+        saveLink.download = link.dataset.filename || "notebook.ipynb";
+        document.body.appendChild(saveLink);
+        saveLink.click();
+        saveLink.remove();
+        window.setTimeout(() => URL.revokeObjectURL(objectUrl), 1000);
+      } catch (error) {
+        console.error(error);
+        window.alert("The notebook could not be downloaded. Please try again.");
+      } finally {
+        label.textContent = originalLabel;
+        link.removeAttribute("aria-busy");
+      }
+    });
+  });
 })();
