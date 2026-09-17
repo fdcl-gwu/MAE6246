@@ -298,10 +298,10 @@ Initial conditions on the $x_1$ axis converge to the origin. Every nonzero $x_2$
 Let $A$ be real and suppose it has a nonreal eigenpair
 
 $$
-\lambda=\alpha+i\beta,\qquad v=p+iq,\qquad \beta\ne0,
+\lambda=\sigma+i\omega,\qquad v=p+iq,\qquad \omega>0,
 $$
 
-where $p,q$ are real. Taking the complex conjugate of $Av=\lambda v$ gives
+where $\sigma$ is the real part, $\omega>0$ is the angular frequency, and $p,q$ are real. We choose the eigenvalue with positive imaginary part; its conjugate is $\overline\lambda=\sigma-i\omega$. Taking the complex conjugate of $Av=\lambda v$ gives
 
 $$
 A\overline v=\overline\lambda\,\overline v.
@@ -361,9 +361,9 @@ The imaginary parts cancel at every time, not only at $t=0$. The two complex mod
 
 $$
 e^{\lambda t}v
-=e^{\alpha t}\left[
-(p\cos\beta t-q\sin\beta t)
-+i(p\sin\beta t+q\cos\beta t)
+=e^{\sigma t}\left[
+(p\cos\omega t-q\sin\omega t)
++i(p\sin\omega t+q\cos\omega t)
 \right].
 $$
 
@@ -378,36 +378,35 @@ and its trajectory is
 $$
 \boxed{
 \begin{aligned}
-x(t)=e^{\alpha t}\bigl[&a(p\cos\beta t-q\sin\beta t)\\
-&+b(p\sin\beta t+q\cos\beta t)\bigr].
+x(t)=e^{\sigma t}\bigl[&a(p\cos\omega t-q\sin\omega t)\\
+&+b(p\sin\omega t+q\cos\omega t)\bigr].
 \end{aligned}
 }
 $$
 
 This gives a practical route from a real initial state to a real trajectory: solve $x_0=ap+bq$, set $c=(a-ib)/2$, and evolve the conjugate pair together.
 
-The real part $\alpha$ sets the exponential envelope, and $|\beta|$ is the angular frequency. A complex eigenvector does not define a real invariant line; its real and imaginary parts span a real invariant plane.
+The real part $\sigma$ sets the exponential envelope, and $\omega$ is the angular frequency. A complex eigenvector does not define a real invariant line; its real and imaginary parts span a real invariant plane.
 
-- $\alpha<0$: an inward spiral, also called a stable focus.
-- $\alpha>0$: an outward spiral, also called an unstable focus.
-- $\alpha=0$: a center with closed elliptical orbits in the planar linear system.
+- $\sigma<0$: an inward spiral, also called a stable focus.
+- $\sigma>0$: an outward spiral, also called an unstable focus.
+- $\sigma=0$: a center with closed elliptical orbits in the planar linear system.
 
 The curves need not be circles because the transformation to physical coordinates need not preserve lengths or angles. Determine clockwise or counterclockwise motion from the vector field in the plotted coordinates.
 
 **How the imaginary part produces oscillation.** The factor associated with the eigenvalue is
 
 $$
-e^{(\alpha+i\beta)t}=e^{\alpha t}\bigl(\cos\beta t+i\sin\beta t\bigr).
+e^{(\sigma+i\omega)t}=e^{\sigma t}\bigl(\cos\omega t+i\sin\omega t\bigr).
 $$
 
-Combining the conjugate modes cancels the imaginary-valued parts of the state, but preserves the real sine and cosine terms. Thus a nonzero contribution from this pair has an oscillating pattern multiplied by the envelope $e^{\alpha t}$. The imaginary part sets the rate at which that pattern repeats:
+Combining the conjugate modes cancels the imaginary-valued parts of the state, but preserves the real sine and cosine terms. Thus a nonzero contribution from this pair has an oscillating pattern multiplied by the envelope $e^{\sigma t}$. The imaginary part sets the rate at which that pattern repeats:
 
 $$
-\boxed{\omega=|\beta|,\qquad T=\frac{2\pi}{|\beta|},\qquad
-f=\frac{|\beta|}{2\pi}.}
+\boxed{T=\frac{2\pi}{\omega},\qquad f=\frac{\omega}{2\pi}.}
 $$
 
-Here $\omega$ is the angular frequency, $T$ is the period of the sinusoidal factors, and $f$ is the frequency in cycles per unit time. Increasing $|\beta|$ produces faster oscillations and a shorter period. The real part controls whether those oscillations decay ($\alpha<0$), persist with constant modal amplitude ($\alpha=0$), or grow ($\alpha>0$). The full nonzero trajectory is periodic only when $\alpha=0$; otherwise its amplitude changes from one cycle to the next. For a real eigenvalue ($\beta=0$), this sinusoidal mechanism is absent.
+Here $\omega$ is the angular frequency, $T$ is the period of the sinusoidal factors, and $f$ is the frequency in cycles per unit time. Increasing $\omega$ produces faster oscillations and a shorter period. The real part controls whether those oscillations decay ($\sigma<0$), persist with constant modal amplitude ($\sigma=0$), or grow ($\sigma>0$). The full nonzero trajectory is periodic only when $\sigma=0$; otherwise its amplitude changes from one cycle to the next. For a real eigenvalue ($\omega=0$), this sinusoidal mechanism is absent.
 
 ## Connection to the damped oscillator
 
@@ -426,7 +425,7 @@ $$
 \boxed{\lambda=-0.3\pm i\sqrt{1.91}.}
 $$
 
-The phase portrait is an inward spiral with exponential envelope $e^{-0.3t}$. At $(q,\dot q)=(1,0)$, the velocity vector is $(0,-2)$, so the motion is clockwise in the $(q,\dot q)$ plane.
+Here $\sigma=-0.3$ and $\omega=\sqrt{1.91}$. The phase portrait is an inward spiral with exponential envelope $e^{-0.3t}$. At $(q,\dot q)=(1,0)$, the velocity vector is $(0,-2)$, so the motion is clockwise in the $(q,\dot q)$ plane.
 
 Removing damping gives $\lambda=\pm i\sqrt2$. The quantity
 
@@ -489,9 +488,9 @@ Eigenvalues & Additional structure & Equilibrium type & Stability of the origin 
 Distinct real $\lambda_1,\lambda_2<0$ & Two independent eigenvectors & Stable node (sink) & Asymptotically stable \\
 Distinct real $\lambda_1,\lambda_2>0$ & Two independent eigenvectors & Unstable node (source) & Unstable \\
 Real $\lambda_1<0<\lambda_2$ & Two independent eigenvectors & Saddle & Unstable \\
-$\alpha\pm i\beta$, $\alpha<0$, $\beta\ne0$ & Conjugate pair & Stable spiral (focus) & Asymptotically stable \\
-$\alpha\pm i\beta$, $\alpha>0$, $\beta\ne0$ & Conjugate pair & Unstable spiral (focus) & Unstable \\
-$\pm i\beta$, $\beta\ne0$ & Conjugate pair & Center & Stable, not asymptotically stable \\
+$\sigma\pm i\omega$, $\sigma<0$, $\omega>0$ & Conjugate pair & Stable spiral (focus) & Asymptotically stable \\
+$\sigma\pm i\omega$, $\sigma>0$, $\omega>0$ & Conjugate pair & Unstable spiral (focus) & Unstable \\
+$\pm i\omega$, $\omega>0$ & Conjugate pair & Center & Stable, not asymptotically stable \\
 $0$ and real $\lambda<0$ & Two independent eigenvectors & Line of equilibria; trajectories approach the line & Stable, not asymptotically stable \\
 $0$ and real $\lambda>0$ & Two independent eigenvectors & Line of equilibria; trajectories leave the line & Unstable \\
 \midrule
@@ -508,7 +507,7 @@ The table applies to planar LTI dynamics. For a nonlinear system, eigenvalues of
 \begin{figure}[p]
 \centering
 \includegraphics[width=0.94\textwidth]{figures/week04_phase_portraits.png}
-\caption{Representative planar LTI phase portraits; arrows indicate forward time. The stable and unstable node matrices are $\operatorname{diag}(-1,-2)$ and $\operatorname{diag}(1,2)$; the saddle matrix is $\operatorname{diag}(-1,1)$. The spiral and center matrices are $A_\alpha=\left[\begin{smallmatrix}\alpha&-1\\1&\alpha\end{smallmatrix}\right]$, with eigenvalues $\alpha\pm i$. The stable spiral, unstable spiral, and center use $\alpha=-0.3$, $0.3$, and $0$, respectively. These three examples rotate counterclockwise, as can be checked at $(1,0)$.}
+\caption{Representative planar LTI phase portraits; arrows indicate forward time. The stable and unstable node matrices are $\operatorname{diag}(-1,-2)$ and $\operatorname{diag}(1,2)$; the saddle matrix is $\operatorname{diag}(-1,1)$. The spiral and center matrices are $A_\sigma=\left[\begin{smallmatrix}\sigma&-1\\1&\sigma\end{smallmatrix}\right]$, with eigenvalues $\sigma\pm i$. The stable spiral, unstable spiral, and center use $\sigma=-0.3$, $0.3$, and $0$, respectively. These three examples rotate counterclockwise, as can be checked at $(1,0)$.}
 \end{figure}
 
 \clearpage
