@@ -591,7 +591,16 @@ A matrix is called **Hurwitz** when all of its eigenvalues have strictly negativ
 
 3. **Instability:** the origin is unstable if at least one eigenvalue has positive real part, or an imaginary-axis eigenvalue has a Jordan block larger than size one.
 
-An eigenvalue is **semisimple** when its geometric and algebraic multiplicities agree, equivalently when every associated Jordan block has size one. A repeated eigenvalue can be semisimple.
+An eigenvalue is **semisimple** when its geometric and algebraic multiplicities agree: there are as many independent eigenvectors for that eigenvalue as its multiplicity in the characteristic polynomial. Equivalently, all Jordan blocks associated with that eigenvalue are $1\times1$. Compare a size-one block with a size-two block:
+
+$$
+J_1(\lambda)=[\lambda],\qquad
+J_2(\lambda)=\begin{bmatrix}\lambda&1\\0&\lambda\end{bmatrix}.
+$$
+
+**What "every associated Jordan block has size one" means.** Each block contains only its eigenvalue and has no superdiagonal $1$. Thus the portion of the Jordan form associated with that eigenvalue is diagonal. Repeated eigenvalues are allowed: $\operatorname{diag}(\lambda,\lambda)$ consists of two size-one blocks, whereas $J_2(\lambda)$ is one size-two block.
+
+**For Lyapunov stability, this requirement applies only to imaginary-axis eigenvalues**, including $\lambda=0$. Blocks with $\operatorname{Re}\lambda<0$ may be larger. Only if every block of the entire Jordan form has size one is $A$ diagonalizable over $\mathbb C$; stability does not require this globally.
 
 If the stability condition holds and at least one eigenvalue lies on the imaginary axis, the origin is stable but not asymptotically stable. Imaginary-axis modes do not decay.
 
@@ -613,43 +622,71 @@ Its terms have the form $t^k e^{\lambda t}$.
 
 For a Hurwitz matrix, any $\gamma$ satisfying $0<\gamma<-\max_i\operatorname{Re}\lambda_i$ leaves enough exponential decay to bound all polynomial factors. Multiplication by the fixed matrices in a Jordan transformation then supplies a finite constant $M$ in the exponential-stability bound.
 
-## Three boundary cases
-
-**A center.** For
+**Checking semisimplicity without constructing the Jordan form.** For each distinct eigenvalue $\lambda$ with $\operatorname{Re}\lambda=0$, find its algebraic multiplicity $m_\lambda$ and count its independent eigenvectors:
 
 $$
-A=\begin{bmatrix}0&-1\\1&0\end{bmatrix},\qquad
- e^{At}=\begin{bmatrix}\cos t&-\sin t\\\sin t&\cos t\end{bmatrix},
+\boxed{\dim\ker(A-\lambda I)=n-\operatorname{rank}(A-\lambda I)
+\stackrel{?}{=}m_\lambda.}
 $$
 
-we have $\|x(t)\|_2=\|x_0\|_2$. The origin is stable, but no nonzero initial state converges to it.
+Equality for every imaginary-axis eigenvalue means that all its blocks are size one. A strict inequality for any of them means at least one larger block and therefore instability. For a complex eigenvalue, compute the rank and eigenspace over $\mathbb C$. A simple imaginary-axis eigenvalue automatically passes this check.
 
-**Two semisimple zero eigenvalues.** If $A=0_{2\times2}$, then $e^{At}=I$ and $x(t)=x_0$. Every point is an equilibrium. The origin is stable but not asymptotically stable.
+\clearpage
 
-**A defective zero eigenvalue.** Let
+## A flowchart for deciding stability
+
+Apply the following decisions to the origin of a finite-dimensional, continuous-time LTI system $\dot x=Ax$ with constant $A$. This is an exact test for the linear system; imaginary-axis eigenvalues of a nonlinear system's linearization require further analysis.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.98\textwidth]{figures/week04_stability_flowchart.png}
+\caption{Stability decisions for a continuous-time LTI system. After the two real-part tests, only eigenvalues on the imaginary axis require a Jordan-structure check.}
+\end{figure}
+
+For the last decision, use the eigenspace-dimension test in Section 6.2.
+
+\clearpage
+
+## Worked stability decisions
+
+**Example 1: a positive real part.** Let
 
 $$
-A=\begin{bmatrix}0&1\\0&0\end{bmatrix},\qquad
- e^{At}=\begin{bmatrix}1&t\\0&1\end{bmatrix}.
+A=\begin{bmatrix}1&-3\\3&1\end{bmatrix},
+\qquad \lambda=1\pm3i.
 $$
 
-For $x_0=[0,\eta]^T$ with arbitrarily small $\eta\ne0$,
+The first decision is **yes**: both eigenvalues have positive real part. The origin is **unstable**. Here $e^{At}=e^tR(3t)$, so $\|x(t)\|_2=e^t\|x_0\|_2$. No Jordan-structure check is needed.
+
+**Example 2: a repeated negative eigenvalue with a size-two block.** Let
 
 $$
-x(t)=\begin{bmatrix}\eta t\\\eta\end{bmatrix}.
+A=\begin{bmatrix}-1&1\\0&-1\end{bmatrix},
+\qquad e^{At}=e^{-t}\begin{bmatrix}1&t\\0&1\end{bmatrix}.
 $$
 
-The first component eventually exceeds any fixed bound. The origin is unstable even though both eigenvalues are zero.
+The eigenvalue $-1$ has algebraic multiplicity two and only one independent eigenvector: $A$ is already a size-two Jordan block. The first decision is **no** and the second is **yes**. The origin is **globally exponentially and asymptotically stable**, because both $e^{-t}$ and $te^{-t}$ decay to zero. The superdiagonal $1$ is allowed because the eigenvalue has strictly negative real part.
 
-By contrast,
+**Example 3: repeated zero eigenvalues, all blocks size one.** Let
 
 $$
-A=\begin{bmatrix}-1&1\\0&-1\end{bmatrix}
-\quad\Longrightarrow\quad
- e^{At}=e^{-t}\begin{bmatrix}1&t\\0&1\end{bmatrix}
+A=\begin{bmatrix}0&0\\0&0\end{bmatrix},
+\qquad \dim\ker A=2=m_0.
 $$
 
-is exponentially stable. A defective matrix is not automatically unstable.
+The first two decisions are **no**. The last decision is **yes**: the two zero eigenvalues have two independent eigenvectors, so the Jordan form has two blocks $[0]$ and no superdiagonal $1$. Since $e^{At}=I$, $x(t)=x_0$. The origin is **stable but not asymptotically stable**; nonzero initial states remain where they started.
+
+**Example 4: the same eigenvalues, but a size-two block.** Let
+
+$$
+A=\begin{bmatrix}0&1\\0&0\end{bmatrix},
+\qquad \dim\ker A=1<2=m_0,
+\qquad e^{At}=\begin{bmatrix}1&t\\0&1\end{bmatrix}.
+$$
+
+The first two decisions are again **no**, but the last decision is now **no**. The superdiagonal $1$ in this imaginary-axis block produces polynomial growth. For an arbitrarily small $x_0=[0,\eta]^T$ with $\eta\ne0$, the solution is $x(t)=[\eta t,\eta]^T$, which eventually leaves any fixed neighborhood. The origin is **unstable**.
+
+Examples 3 and 4 have identical eigenvalues but different eigenspaces and stability. Example 2 shows why a repeated eigenvalue or a defective matrix is not automatically unstable.
 
 ---
 

@@ -1,0 +1,23 @@
+digraph Stability {
+  graph [rankdir=TB, bgcolor="white", pad=0.15, nodesep=0.4, ranksep=0.42, splines=polyline];
+  node [fontname="Helvetica", fontsize=13, color="#466079", penwidth=1.3, style="filled", fillcolor="#edf3f8", margin="0.15,0.10"];
+  edge [fontname="Helvetica", fontsize=12, color="#466079", penwidth=1.3, arrowsize=0.8];
+  start [shape=box, style="rounded,filled", label="Continuous-time LTI system\nẋ = Ax: compute the eigenvalues"];
+  positive [shape=diamond, label="Any Re λ > 0?", width=2.7, height=0.8];
+  negative [shape=diamond, label="All Re λ < 0?", width=2.7, height=0.8];
+  boundary [shape=diamond, label="Imaginary-axis blocks\nall 1 × 1?", width=3.0, height=1.1];
+  unstable1 [shape=box, style="rounded,filled", fillcolor="#fcebe8", color="#aa4d42", label="UNSTABLE\nAn exponentially growing mode"];
+  asymptotic [shape=box, style="rounded,filled", fillcolor="#e6f3ea", color="#3b7b55", label="ASYMPTOTICALLY STABLE\nAlso globally exponentially stable\nRepeated eigenvalues are allowed"];
+  stable [shape=box, style="rounded,filled", fillcolor="#fff4d8", color="#977328", label="STABLE, NOT\nASYMPTOTICALLY STABLE\nBounded nondecaying modes remain"];
+  unstable2 [shape=box, style="rounded,filled", fillcolor="#fcebe8", color="#aa4d42", label="UNSTABLE\nA larger imaginary-axis block\nproduces polynomial growth"];
+  start -> positive;
+  positive -> unstable1 [label="Yes"];
+  positive -> negative [label="No"];
+  negative -> asymptotic [label="Yes"];
+  negative -> boundary [label="No"];
+  boundary -> stable [label="Yes"];
+  boundary -> unstable2 [label="No"];
+  {rank=same;positive;unstable1}
+  {rank=same;negative;asymptotic}
+  {rank=same;boundary;stable}
+}
