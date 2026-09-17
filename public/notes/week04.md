@@ -373,26 +373,29 @@ $$
 x_0=cv+\overline c\,\overline v=ap+bq,
 $$
 
-and its trajectory is
+and its trajectory can be written in matrix form as
 
 $$
 \boxed{
-\begin{aligned}
-x(t)=e^{\sigma t}\bigl[&a(p\cos\omega t-q\sin\omega t)\\
-&+b(p\sin\omega t+q\cos\omega t)\bigr].
-\end{aligned}
+x(t)=e^{\sigma t}
+\underbrace{\begin{bmatrix}p&q\end{bmatrix}}_{S}
+\underbrace{\begin{bmatrix}
+\cos\omega t&\sin\omega t\\
+-\sin\omega t&\cos\omega t
+\end{bmatrix}}_{R(-\omega t)}
+\begin{bmatrix}a\\b\end{bmatrix}.
 }
 $$
 
-This gives a practical route from a real initial state to a real trajectory: solve $x_0=ap+bq$, set $c=(a-ib)/2$, and evolve the conjugate pair together.
+**Rotation in modal coordinates.** With $x=Sz$ and $z(0)=[a,b]^T$, the motion is $z(t)=e^{\sigma t}R(-\omega t)z(0)$. Since $R^TR=I$ and $\det R=1$, $R(-\omega t)$ is a pure rotation: the modal state rotates clockwise through angle $-\omega t$, with length $\|z(t)\|=e^{\sigma t}\|z(0)\|$. The negative angle follows from the convention $v=p+iq$ and basis $(p,q)$.
+
+The basis matrix $S$ can stretch circles into ellipses and, in a planar system, reverse orientation if $\det S<0$. Determine the physical rotation direction from the vector field. The initial coefficients are found by solving $x_0=S[a,b]^T$.
 
 The real part $\sigma$ sets the exponential envelope, and $\omega$ is the angular frequency. A complex eigenvector does not define a real invariant line; its real and imaginary parts span a real invariant plane.
 
 - $\sigma<0$: an inward spiral, also called a stable focus.
 - $\sigma>0$: an outward spiral, also called an unstable focus.
 - $\sigma=0$: a center with closed elliptical orbits in the planar linear system.
-
-The curves need not be circles because the transformation to physical coordinates need not preserve lengths or angles. Determine clockwise or counterclockwise motion from the vector field in the plotted coordinates.
 
 **How the imaginary part produces oscillation.** The factor associated with the eigenvalue is
 
