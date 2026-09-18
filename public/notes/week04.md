@@ -368,6 +368,15 @@ Multiplication by $e^{i\omega t}$ rotates $v_i$ counterclockwise in the complex 
 
 The choice $c=1/2$ gives $x(0)=\operatorname{Re}v=p$. For general $c$, the same interpretation applies to the complex number $2cv_i$ in place of $v_i$; the coefficient $c$ is determined by the initial condition. This componentwise complex-plane rotation does not determine clockwise or counterclockwise motion in the physical $(x_1,x_2)$ phase portrait.
 
+Figure \ref{fig:complex-projection} illustrates the rotation, scaling, and projection for $v_1=1+i$ and $\lambda=-1+i$, with $c=1/2$.
+
+\begin{figure}[p]
+\centering
+\includegraphics[width=\textwidth]{figures/week04_complex_rotation_projection.png}
+\caption{Componentwise complex rotation and its real-valued time history. Left: at $t_*=0.5$, the gray vector is $v_1=1+i$, the blue vector is $e^{i\omega t_*}v_1$, and the green vector is $e^{\sigma t_*}e^{i\omega t_*}v_1$, with $\sigma=-1$ and $\omega=1$. The orange vector is the real-axis projection, connected to the green tip by a dashed line. Right: $x_1(t)=\operatorname{Re}(e^{(-1+i)t}(1+i))=e^{-t}(\cos t-\sin t)$. The matching orange point marks $x_1(0.5)\approx0.241$. Here $v_1$ denotes one complex component of the eigenvector.}
+\label{fig:complex-projection}
+\end{figure}
+
 **Real matrix form for general initial conditions.** Write $c=(a-ib)/2$, where $a,b$ are real. Then the real initial-state expansion is
 
 $$
