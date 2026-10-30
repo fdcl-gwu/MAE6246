@@ -103,6 +103,25 @@ def zero_order_hold(a, b, dt):
     return discrete[:n, :n], discrete[:n, n:]
 
 
+def compute_control(xhat, K, torque_limit):
+    """Compute u = -K*xhat and return the torque after saturation.
+
+    This function does not read or advance the plant. For the full-state
+    baseline, pass the actual state in place of the estimate.
+    """
+    return float(np.clip(-(K@xhat).item(), -torque_limit, torque_limit))
+
+
+def update_observer(xhat, u, y, Ao, Bo):
+    """Return the next estimate using held applied torque and measured angle.
+
+    Ao, Bo discretize xhat_dot = (A-L*C)*xhat + B*u + L*y over one control
+    period. Their input columns are ordered [u, y]. This function does not
+    modify xhat or access the true plant state.
+    """
+    return Ao@xhat + Bo@np.array([u, y])
+
+
 def simulate(plant="mujoco", *, x0=X0, duration=12., control_dt=0.002,
              physics_dt=0.001, torque_limit=10., feedback="observer"):
     """Use identical sampling, gains, saturation and observer on either plant.
@@ -136,11 +155,11 @@ def simulate(plant="mujoco", *, x0=X0, duration=12., control_dt=0.002,
             x = read_state(data)
         y = float((C@x).item())  # Only the measured angle is supplied to the observer.
         state_for_control = xhat if feedback == "observer" else x
-        u = float(np.clip(-(K@state_for_control).item(), -torque_limit, torque_limit))
+        u = compute_control(state_for_control, K, torque_limit)
         X[j], Xhat[j], U[j] = x, xhat, u
         if j == steps:
             break
-        next_estimate = Ao@xhat + Bo@np.array([u, y])
+        next_estimate = update_observer(xhat, u, y, Ao, Bo)
         if plant == "mujoco":
             data.ctrl[0] = u
             for _ in range(substeps):
@@ -365,10 +384,11 @@ def run_live(duration=60., torque_limit=10.):
             # Refresh sensor after mj_step, whose derived quantities can lag qpos.
             mujoco.mj_forward(model, data)
             y = float(data.sensor("angle").data[0])
-            u = float(np.clip(-(K@xhat).item(), -torque_limit, torque_limit))
+            u = compute_control(xhat, K, torque_limit)
+            next_estimate = update_observer(xhat, u, y, Ao, Bo)
             data.ctrl[0] = u
             mujoco.mj_step(model, data)
-            xhat = Ao@xhat + Bo@np.array([u, y])
+            xhat = next_estimate
             mujoco.mj_forward(model, data)
             with viewer.lock():
                 viewer.user_scn.ngeom = 0

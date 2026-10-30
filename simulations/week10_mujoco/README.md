@@ -5,6 +5,12 @@ same pole-placement gains, angle-only observer, initial condition, 2 ms control
 period, and 10 N m torque limit. MuJoCo uses a 1 ms RK4 physics step; the linear
 plant and observer updates use exact zero-order-hold discretization.
 
+`compute_control(xhat, K, torque_limit)` calculates the saturated torque.
+`update_observer(xhat, u, y, Ao, Bo)` calculates the next estimate from that
+applied torque and the measured angle. Both the recorded simulations and the
+native viewer call these functions. The simulation loop handles measurement,
+plant stepping, and logging; the observer cannot access the true plant state.
+
 ## Run locally
 
 ```bash
