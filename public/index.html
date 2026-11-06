@@ -107,10 +107,10 @@
 
             <article class="week-card" id="week11">
               <div class="week-meta"><span class="week-number">Week 11</span><time class="week-date" datetime="2026-11-06">November 6</time></div>
-              <div class="week-main"><h3>Optimal-Control Foundations and Finite-Horizon LQR</h3><ul class="topic-list"><li>Constrained optimization</li><li>Quadratic performance costs</li><li>Hamiltonian and costate</li><li>Stationarity and boundary conditions</li><li>Two-point boundary-value problem</li></ul></div>
+              <div class="week-main"><h3>Optimal Control, Riccati Equations, and LQR</h3><ul class="topic-list"><li>Constrained optimization and quadratic performance costs</li><li>Hamiltonian, costate, and boundary conditions</li><li>Finite-horizon LQR and the differential Riccati equation</li><li>Infinite-horizon LQR and the algebraic Riccati equation</li><li>Stabilizing solutions, feedback gains, and weight selection</li></ul></div>
               <div class="resource-panel">
                 <span class="resource-label">Course materials</span>
-                <p>Study finite-horizon regulation and the state–effort tradeoff. In the MuJoCo example, design state feedback and an angle-only observer for a beam with a sliding mass, then compare the linear and nonlinear responses.</p>
+                <p>Study finite- and infinite-horizon LQR, Riccati equations, and the state–effort tradeoff. In the MuJoCo example, design state feedback and an angle-only observer for a beam with a sliding mass, then compare the linear and nonlinear responses.</p>
                 <div class="resource-actions">
                   <a class="resource-link file-link" data-file="./notes/week11.pdf" data-released="true" data-ready-label="View course note" href="./notes/week11.pdf"><span>View course note</span></a>
                   <a class="resource-link colab-link" data-notebook="notebooks/week11/week11_mujoco_controller_observer.ipynb" data-released="true" data-ready-label="MuJoCo in Colab" href="https://colab.research.google.com/github/fdcl-gwu/MAE6246/blob/main/notebooks/week11/week11_mujoco_controller_observer.ipynb"><span>MuJoCo in Colab</span></a>
@@ -119,24 +119,24 @@
               </div>
             </article>
 
-            <article class="week-card">
+            <article class="week-card" id="week12">
               <div class="week-meta"><span class="week-number">Week 12</span><time class="week-date" datetime="2026-11-13">November 13</time></div>
-              <div class="week-main"><h3>Riccati Equations and Infinite-Horizon LQR</h3><ul class="topic-list"><li>Differential Riccati equation</li><li>Algebraic Riccati equation</li><li>Stabilizing solution</li><li>Continuous- and discrete-time LQR</li><li>Weight scaling, effort, and saturation</li></ul></div>
-              <div class="resource-panel"><span class="resource-label">Course materials</span><p>Design LQR controllers for a cart–pendulum and sweep the weights to expose performance tradeoffs.</p><div class="resource-actions"><a class="resource-link file-link is-pending" data-file="./notes/week12.pdf" data-released="false" data-ready-label="View course note" data-pending-label="Course note coming soon" aria-disabled="true"><span>Course note coming soon</span></a><a class="resource-link colab-link is-pending" data-notebook="notebooks/week12_lqr.ipynb" data-released="false" data-pending-label="Notebook coming soon" aria-disabled="true"><span>Notebook coming soon</span></a></div></div>
+              <div class="week-main"><h3>Kalman Filtering</h3><ul class="topic-list"><li>Stochastic state and measurement models</li><li>Noise covariance</li><li>Minimum-mean-square estimation</li><li>Continuous and discrete filters</li><li>Innovations and consistency</li></ul></div>
+              <div class="resource-panel"><span class="resource-label">Course materials</span><p>Estimate position and velocity from noisy data and compare raw measurements, an observer, and a Kalman filter.</p><div class="resource-actions"><a class="resource-link file-link is-pending" data-file="./notes/week12.pdf" data-released="false" data-ready-label="View course note" data-pending-label="Course note coming soon" aria-disabled="true"><span>Course note coming soon</span></a><a class="resource-link colab-link is-pending" data-notebook="notebooks/week12_kalman_filter.ipynb" data-released="false" data-pending-label="Notebook coming soon" aria-disabled="true"><span>Notebook coming soon</span></a></div></div>
             </article>
 
-            <article class="week-card">
+            <article class="week-card" id="week13">
               <div class="week-meta"><span class="week-number">Week 13</span><time class="week-date" datetime="2026-11-20">November 20</time></div>
-              <div class="week-main"><h3>Kalman Filtering</h3><ul class="topic-list"><li>Stochastic state and measurement models</li><li>Noise covariance</li><li>Minimum-mean-square estimation</li><li>Continuous and discrete filters</li><li>Innovations and consistency</li></ul></div>
-              <div class="resource-panel"><span class="resource-label">Course materials</span><p>Estimate position and velocity from noisy data and compare raw measurements, an observer, and a Kalman filter.</p><div class="resource-actions"><a class="resource-link file-link is-pending" data-file="./notes/week13.pdf" data-released="false" data-ready-label="View course note" data-pending-label="Course note coming soon" aria-disabled="true"><span>Course note coming soon</span></a><a class="resource-link colab-link is-pending" data-notebook="notebooks/week13_kalman_filter.ipynb" data-released="false" data-pending-label="Notebook coming soon" aria-disabled="true"><span>Notebook coming soon</span></a></div></div>
+              <div class="week-main"><h3>LQG Synthesis and Course Integration</h3><ul class="topic-list"><li>LQR plus Kalman estimation</li><li>Separation principle</li><li>Controller and estimator comparisons</li><li>Model mismatch and saturation</li><li>Integrated analysis-to-simulation workflow</li></ul></div>
+              <div class="resource-panel"><span class="resource-label">Course materials</span><p>Build an output-feedback LQG controller and compare nominal and mismatched-model performance.</p><div class="resource-actions"><a class="resource-link file-link is-pending" data-file="./notes/week13.pdf" data-released="false" data-ready-label="View course note" data-pending-label="Course note coming soon" aria-disabled="true"><span>Course note coming soon</span></a><a class="resource-link colab-link is-pending" data-notebook="notebooks/week13_lqg.ipynb" data-released="false" data-pending-label="Notebook coming soon" aria-disabled="true"><span>Notebook coming soon</span></a></div></div>
             </article>
 
             <div class="break-card" role="note"><strong>Thanksgiving Break</strong><span>Friday, November 27 · No class</span></div>
 
-            <article class="week-card">
+            <article class="week-card" id="week14">
               <div class="week-meta"><span class="week-number">Week 14</span><time class="week-date" datetime="2026-12-04">December 4</time></div>
-              <div class="week-main"><h3>LQG Synthesis and Course Integration</h3><ul class="topic-list"><li>LQR plus Kalman estimation</li><li>Separation principle</li><li>Controller and estimator comparisons</li><li>Model mismatch and saturation</li><li>Integrated analysis-to-simulation workflow</li></ul></div>
-              <div class="resource-panel"><span class="resource-label">Course materials</span><p>Build an output-feedback LQG controller and compare nominal and mismatched-model performance.</p><div class="resource-actions"><a class="resource-link file-link is-pending" data-file="./notes/week14.pdf" data-released="false" data-ready-label="View course note" data-pending-label="Course note coming soon" aria-disabled="true"><span>Course note coming soon</span></a><a class="resource-link colab-link is-pending" data-notebook="notebooks/week14_lqg.ipynb" data-released="false" data-pending-label="Notebook coming soon" aria-disabled="true"><span>Notebook coming soon</span></a></div></div>
+              <div class="week-main"><h3>Final Exam Review (Online Lecture)</h3><ul class="topic-list"><li>State-space modeling and system analysis</li><li>Controllability, observability, and stability</li><li>State feedback and observers</li><li>LQR, Kalman filtering, and LQG</li><li>Representative final-exam problems</li></ul></div>
+              <div class="resource-panel"><span class="resource-label">Course materials</span><p>Review the course and work through representative final-exam problems in an online lecture.</p><div class="resource-actions"><a class="resource-link file-link is-pending" data-file="./notes/week14.pdf" data-released="false" data-ready-label="View review materials" data-pending-label="Review materials coming soon" aria-disabled="true"><span>Review materials coming soon</span></a></div></div>
             </article>
           </div>
         </section>
@@ -247,6 +247,25 @@
               <div class="resource-actions homework-actions">
                 <a class="resource-link colab-link" data-notebook="notebooks/furuta_intro_assignment.ipynb" data-released="true" data-ready-label="Open in Colab" href="https://colab.research.google.com/github/fdcl-gwu/MAE6246/blob/main/notebooks/furuta_intro_assignment.ipynb"><span>Open in Colab</span></a>
                 <a class="resource-link" href="./homework/furuta_intro_assignment.ipynb" download="MAE6246_furuta_intro_assignment.ipynb"><span>Download notebook</span></a>
+              </div>
+            </div>
+          </article>
+          <article class="week-card homework-card" id="homework07">
+            <div class="week-meta homework-meta">
+              <span class="week-number">Homework 7</span>
+              <time class="week-date" datetime="2026-11-13T10:00:00-05:00">Due November 13<br>at 10:00 AM</time>
+              <span class="homework-penalty">Late penalty: −1 point per 10 minutes</span>
+            </div>
+            <div class="week-main">
+              <h3>LQR by Hand and Furuta Pendulum Control</h3>
+              <p class="homework-description">Part 1: derive point-mass LQR by hand (40 points). Part 2: design pole-placement and LQR controllers for the Furuta pendulum, verify them with MuJoCo, and expand a sampled recovery set (60 points). Submit the handwritten PDF and completed notebook through Blackboard, with the video embedded in the notebook.</p>
+            </div>
+            <div class="resource-panel">
+              <span class="resource-label">Assignment files</span>
+              <div class="resource-actions homework-actions">
+                <a class="resource-link file-link" data-file="./homework/homework07.pdf" data-released="true" data-ready-label="Part 1: Handwritten problems" href="./homework/homework07.pdf"><span>Part 1: Handwritten problems</span></a>
+                <a class="resource-link colab-link" data-notebook="notebooks/homework07/homework07_furuta_control.ipynb" data-released="true" data-ready-label="Part 2: Open in Colab" href="https://colab.research.google.com/github/fdcl-gwu/MAE6246/blob/main/notebooks/homework07/homework07_furuta_control.ipynb"><span>Part 2: Open in Colab</span></a>
+                <a class="resource-link" href="./homework/homework07_bundle.zip" download="homework07_bundle.zip"><span>Download all files</span></a>
               </div>
             </div>
           </article>
