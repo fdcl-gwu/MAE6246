@@ -1,0 +1,206 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>1D Position Estimation · MAE 6246</title>
+  <meta name="description" content="Explore how a Gaussian prior and a noisy position measurement combine into an MMSE estimate.">
+  <style>
+    :root { color-scheme: light; --ink:#152238; --muted:#526174; --navy:#19345d; --paper:#fffdf8; --cream:#f6f2e8; --line:#d9d3c5; --prior:#2366b1; --measurement:#b05a12; --posterior:#197451; }
+    * { box-sizing:border-box; }
+    body { margin:0; background:var(--cream); color:var(--ink); font:16px/1.55 system-ui,-apple-system,"Segoe UI",sans-serif; }
+    main { max-width:1200px; margin:auto; padding:28px 24px 48px; }
+    a { color:var(--navy); text-underline-offset:3px; }
+    .eyebrow { margin:24px 0 4px; color:var(--muted); font-size:13px; letter-spacing:.08em; text-transform:uppercase; }
+    h1 { font:normal clamp(28px,4vw,42px)/1.2 Georgia,serif; margin:0 0 12px; }
+    .intro { margin:0 0 24px; max-width:780px; color:var(--muted); }
+    .workspace { display:grid; grid-template-columns:280px minmax(0,1fr); gap:24px; align-items:start; }
+    .controls { background:var(--paper); border:1px solid var(--line); border-radius:12px; padding:22px; }
+    .control + .control { margin-top:24px; }
+    .label-row { display:flex; align-items:baseline; justify-content:space-between; gap:12px; }
+    label { cursor:pointer; }
+    .label-row label { font-weight:600; }
+    output, .number { font-variant-numeric:tabular-nums; }
+    .units { color:var(--muted); font-size:13px; }
+    input[type=range] { width:100%; margin:10px 0 0; accent-color:var(--navy); min-height:30px; cursor:pointer; }
+    .limits { display:flex; justify-content:space-between; color:var(--muted); font-size:12px; }
+    .variance-note { margin:20px 0 0; color:var(--muted); font-size:13px; }
+    .visual { min-width:0; }
+    fieldset { border:0; padding:0; margin:0; }
+    legend { font-size:13px; color:var(--muted); margin-bottom:8px; }
+    .toggles { display:flex; flex-wrap:wrap; gap:8px 20px; }
+    .toggle { display:flex; gap:7px; align-items:center; min-height:36px; }
+    input[type=checkbox] { width:18px; height:18px; margin:0; accent-color:var(--navy); }
+    .swatch { width:24px; border-top:3px solid var(--prior); }
+    .swatch.measurement { border-color:var(--measurement); border-top-style:dashed; }
+    .swatch.posterior { border-color:var(--posterior); border-top-width:4px; }
+    #plot { display:block; width:100%; height:370px; margin-top:8px; overflow:visible; }
+    .caption { color:var(--muted); font-size:13px; margin:0 0 20px; }
+    .results { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); border-top:1px solid var(--line); padding-top:16px; gap:16px; }
+    .result-label { color:var(--muted); font-size:13px; }
+    .result-value { font-size:25px; font-weight:600; margin-top:2px; }
+    .formula { color:var(--muted); font-size:14px; margin-top:4px; }
+    .explanation { border-top:1px solid var(--line); margin-top:28px; padding-top:20px; display:grid; grid-template-columns:1fr 1fr; gap:24px; }
+    .explanation h2 { font:normal 21px Georgia,serif; margin:0 0 8px; }
+    .explanation p { margin:0; }
+    .equation { font-family:Georgia,serif; font-size:18px; margin-bottom:10px !important; }
+    #update { margin-top:16px; }
+    .visually-hidden { position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0; }
+    @media(max-width:760px) {
+      main { padding:20px 16px 32px; }
+      .workspace { grid-template-columns:1fr; gap:20px; }
+      .controls { display:grid; grid-template-columns:1fr 1fr; gap:20px; padding:16px; }
+      .control + .control { margin:0; }
+      .variance-note { grid-column:1/-1; margin:0; }
+      .explanation { grid-template-columns:1fr; }
+      #plot { height:320px; }
+      .result-value { font-size:22px; }
+    }
+    @media(max-width:390px) { .controls { grid-template-columns:1fr; } .results { gap:8px; } .formula { font-size:12px; } }
+  </style>
+</head>
+<body>
+<main>
+  <a href="../index.html#week12">← Course homepage</a>
+  <p class="eyebrow">MAE 6246 · Week 12 · Kalman filtering</p>
+  <h1>Where is the vehicle?</h1>
+  <p class="intro">Combine a prior belief about a vehicle’s position with one noisy measurement. Move the sliders to see how uncertainty changes the estimate.</p>
+  <div class="workspace">
+    <section class="controls" aria-label="Prior and measurement parameters">
+      <div class="control">
+        <div class="label-row"><label for="mean">Prior mean x̄</label><span><output id="mean-value" for="mean">10.0</output> <span class="units">m</span></span></div>
+        <input id="mean" type="range" min="-20" max="20" step="0.1" value="10">
+        <div class="limits"><span>−20 m</span><span>20 m</span></div>
+      </div>
+      <div class="control">
+        <div class="label-row"><label for="M">Prior variance M</label><span><output id="M-value" for="M">4.0</output> <span class="units">m²</span></span></div>
+        <input id="M" type="range" min="0.1" max="25" step="0.1" value="4">
+        <div class="limits"><span>0.1 m²</span><span>25 m²</span></div>
+      </div>
+      <div class="control">
+        <div class="label-row"><label for="z">Measurement z</label><span><output id="z-value" for="z">13.0</output> <span class="units">m</span></span></div>
+        <input id="z" type="range" min="-20" max="20" step="0.1" value="13">
+        <div class="limits"><span>−20 m</span><span>20 m</span></div>
+      </div>
+      <div class="control">
+        <div class="label-row"><label for="R">Noise variance R</label><span><output id="R-value" for="R">1.0</output> <span class="units">m²</span></span></div>
+        <input id="R" type="range" min="0.1" max="25" step="0.1" value="1">
+        <div class="limits"><span>0.1 m²</span><span>25 m²</span></div>
+      </div>
+      <p class="variance-note">M and R are variances. The corresponding standard deviations are √M and √R.</p>
+    </section>
+    <section class="visual" aria-label="Position distributions and estimate">
+      <fieldset>
+        <legend>Show distributions</legend>
+        <div class="toggles">
+          <label class="toggle"><input type="checkbox" id="show-prior" checked><span class="swatch" aria-hidden="true"></span>Prior</label>
+          <label class="toggle"><input type="checkbox" id="show-measurement" checked><span class="swatch measurement" aria-hidden="true"></span>Measurement</label>
+          <label class="toggle"><input type="checkbox" id="show-posterior" checked><span class="swatch posterior" aria-hidden="true"></span>Estimate</label>
+        </div>
+      </fieldset>
+      <svg id="plot" role="img" aria-labelledby="plot-title plot-description"></svg>
+      <p class="caption">Vertical markers show the curve centers. Shading shows density, not a confidence interval. Axes adjust to the parameters and stay fixed when curves are hidden.</p>
+      <div class="results">
+        <div><div class="result-label">Kalman gain K</div><div class="result-value number" id="gain">0.800</div><div class="formula">M / (M + R)</div></div>
+        <div><div class="result-label">Estimate x̂ <span class="units">[m]</span></div><div class="result-value number" id="estimate">12.400</div><div class="formula">x̄ + K(z − x̄)</div></div>
+        <div><div class="result-label">Variance P <span class="units">[m²]</span></div><div class="result-value number" id="variance">0.800</div><div class="formula">MR / (M + R)</div></div>
+      </div>
+      <p id="update" class="number">x̂ = 0.200 × 10.0 + 0.800 × 13.0 = 12.400 m.</p>
+      <p id="announcement" class="visually-hidden" aria-live="polite" aria-atomic="true"></p>
+    </section>
+  </div>
+  <div class="explanation">
+    <section>
+      <h2>One measurement, one update</h2>
+      <p class="equation">x ∼ N(x̄, M), &nbsp; z = x + v, &nbsp; v ∼ N(0, R)</p>
+      <p>The prior position and measurement noise are independent. After observing z, the posterior is x | z ∼ N(x̂, P). Its mean x̂ is the MMSE estimate; P measures the uncertainty that remains.</p>
+    </section>
+    <section>
+      <h2>Reading the measurement curve</h2>
+      <p>The dashed curve is the likelihood p(z | x), viewed as a function of candidate position x. For this sensor model it has the shape N(z, R) and integrates to one over x. It shows which positions agree with the observed z. The posterior is proportional to prior × likelihood.</p>
+    </section>
+  </div>
+  <noscript><p>This interactive demonstration requires JavaScript.</p></noscript>
+</main>
+<script>
+(() => {
+  'use strict';
+  const svg = document.getElementById('plot');
+  const ids = ['mean', 'M', 'z', 'R'];
+  const controls = Object.fromEntries(ids.map(id => [id, document.getElementById(id)]));
+  const visibility = Object.fromEntries(['prior','measurement','posterior'].map(id => [id, document.getElementById('show-' + id)]));
+  const ns = 'http://www.w3.org/2000/svg';
+  const fmt = (value, digits=3) => (Math.abs(value) < 0.5 * 10 ** -digits ? 0 : value).toFixed(digits);
+  function add(tag, attrs={}, text, parent=svg) {
+    const el = document.createElementNS(ns, tag);
+    for (const [key,value] of Object.entries(attrs)) el.setAttribute(key, value);
+    if (text !== undefined) el.textContent = text;
+    parent.appendChild(el);
+    return el;
+  }
+  function tickStep(span, count) {
+    const raw = span/count, power = 10 ** Math.floor(Math.log10(raw)), scaled = raw/power;
+    return (scaled <= 1 ? 1 : scaled <= 2 ? 2 : scaled <= 5 ? 5 : 10)*power;
+  }
+  function render(announce=false) {
+    const mean = Number(controls.mean.value), M = Number(controls.M.value);
+    const z = Number(controls.z.value), R = Number(controls.R.value);
+    const K = M/(M+R), estimate = mean + K*(z-mean), P = M*R/(M+R);
+    for (const id of ids) document.getElementById(id+'-value').textContent = fmt(Number(controls[id].value),1);
+    document.getElementById('gain').textContent = fmt(K);
+    document.getElementById('estimate').textContent = fmt(estimate);
+    document.getElementById('variance').textContent = fmt(P);
+    document.getElementById('update').textContent = `x̂ = ${fmt(1-K)} × (${fmt(mean,1)}) + ${fmt(K)} × (${fmt(z,1)}) = ${fmt(estimate)} m.`;
+    const summary = `Posterior mean ${fmt(estimate)} meters, variance ${fmt(P)} square meters. Kalman gain ${fmt(K)}.`;
+    if (announce) document.getElementById('announcement').textContent = summary;
+    const series = [
+      {id:'prior', name:'Prior', mean, variance:M, color:'var(--prior)', dash:''},
+      {id:'measurement', name:'Measurement likelihood', mean:z, variance:R, color:'var(--measurement)', dash:'7 5'},
+      {id:'posterior', name:'Posterior', mean:estimate, variance:P, color:'var(--posterior)', dash:''}
+    ];
+    const width = svg.clientWidth, height = svg.clientHeight;
+    const margin = {left:54, right:14, top:28, bottom:46};
+    const innerW = width-margin.left-margin.right, innerH = height-margin.top-margin.bottom;
+    const low = Math.min(...series.map(s => s.mean-4*Math.sqrt(s.variance)));
+    const high = Math.max(...series.map(s => s.mean+4*Math.sqrt(s.variance)));
+    const peak = Math.max(...series.map(s => 1/Math.sqrt(2*Math.PI*s.variance)))*1.12;
+    const px = x => margin.left+(x-low)/(high-low)*innerW;
+    const py = y => margin.top+innerH*(1-y/peak);
+    svg.setAttribute('viewBox',`0 0 ${width} ${height}`);
+    svg.replaceChildren();
+    add('title',{id:'plot-title'},'Prior, measurement likelihood, and posterior over vehicle position');
+    add('desc',{id:'plot-description'},summary+' Visible curves: '+series.filter(s => visibility[s.id].checked).map(s => s.name).join(', ')+'.');
+    add('text',{x:margin.left,y:16,fill:'var(--muted)','font-size':12},'Density [1/m]');
+    for (let i=0;i<=4;i++) {
+      const value=peak*i/4, y=py(value);
+      add('line',{x1:margin.left,x2:width-margin.right,y1:y,y2:y,stroke:'var(--line)','stroke-width':1});
+      add('text',{x:margin.left-8,y:y+4,'text-anchor':'end',fill:'var(--muted)','font-size':12},fmt(value,2));
+    }
+    const step = tickStep(high-low,width<430 ? 4 : 7);
+    for (let x=Math.ceil(low/step)*step;x<=high+step*1e-8;x+=step) {
+      add('line',{x1:px(x),x2:px(x),y1:py(0),y2:py(0)+5,stroke:'var(--muted)'});
+      add('text',{x:px(x),y:py(0)+22,'text-anchor':'middle',fill:'var(--muted)','font-size':12},fmt(x,step<1 ? 1 : 0));
+    }
+    for (const s of series) {
+      const group=add('g',{'data-series':s.id,display:visibility[s.id].checked?'inline':'none'});
+      const density = x => Math.exp(-0.5*(x-s.mean)**2/s.variance)/Math.sqrt(2*Math.PI*s.variance);
+      const points = Array.from({length:1601},(_,i) => {const x=low+(high-low)*i/1600; return `${px(x).toFixed(2)},${py(density(x)).toFixed(2)}`;});
+      const path='M'+points.join(' L');
+      add('path',{d:`${path} L${px(high)},${py(0)} L${px(low)},${py(0)} Z`,fill:s.color,'fill-opacity':s.id==='posterior' ? 0.14 : 0.05,stroke:'none'},undefined,group);
+      add('path',{d:path,fill:'none',stroke:s.color,'stroke-width':s.id==='posterior'?3:2.2,'stroke-dasharray':s.dash},undefined,group);
+      add('line',{x1:px(s.mean),x2:px(s.mean),y1:py(0),y2:py(density(s.mean)),stroke:s.color,'stroke-width':1,'stroke-dasharray':'3 4',opacity:0.65},undefined,group);
+    }
+    add('text',{x:margin.left+innerW/2,y:height-3,'text-anchor':'middle',fill:'var(--ink)','font-size':13},'Vehicle position x [m]');
+    if (!series.some(s => visibility[s.id].checked)) add('text',{x:margin.left+innerW/2,y:margin.top+innerH/2,'text-anchor':'middle',fill:'var(--muted)','font-size':12},'Select a curve to display.');
+  }
+  for (const control of Object.values(controls)) {
+    control.addEventListener('input',()=>render());
+    control.addEventListener('change',()=>render(true));
+  }
+  for (const checkbox of Object.values(visibility)) checkbox.addEventListener('change',()=>render(true));
+  new ResizeObserver(()=>render()).observe(svg);
+  render();
+})();
+</script>
+</body>
+</html>
