@@ -99,7 +99,7 @@
         </div>
       </fieldset>
       <svg id="plot" role="img" aria-labelledby="plot-title plot-description"></svg>
-      <p class="caption">Vertical markers show the curve centers. Shading shows density, not a confidence interval. Axes adjust to the parameters and stay fixed when curves are hidden.</p>
+      <p class="caption">Vertical markers show the curve centers. Shading shows density, not a confidence interval. The horizontal axis is fixed at −40 to 40 m; the vertical axis adjusts to the parameters. Hiding curves leaves both axes unchanged.</p>
       <div class="results">
         <div><div class="result-label">Kalman gain K</div><div class="result-value number" id="gain">0.800</div><div class="formula">M / (M + R)</div></div>
         <div><div class="result-label">Estimate x̂ <span class="units">[m]</span></div><div class="result-value number" id="estimate">12.400</div><div class="formula">x̄ + K(z − x̄)</div></div>
@@ -161,8 +161,8 @@
     const width = svg.clientWidth, height = svg.clientHeight;
     const margin = {left:54, right:14, top:28, bottom:46};
     const innerW = width-margin.left-margin.right, innerH = height-margin.top-margin.bottom;
-    const low = Math.min(...series.map(s => s.mean-4*Math.sqrt(s.variance)));
-    const high = Math.max(...series.map(s => s.mean+4*Math.sqrt(s.variance)));
+    const low = -40;
+    const high = 40;
     const peak = Math.max(...series.map(s => 1/Math.sqrt(2*Math.PI*s.variance)))*1.12;
     const px = x => margin.left+(x-low)/(high-low)*innerW;
     const py = y => margin.top+innerH*(1-y/peak);
