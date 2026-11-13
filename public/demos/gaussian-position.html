@@ -68,8 +68,8 @@
   <div class="workspace">
     <section class="controls" aria-label="Prior and measurement parameters">
       <div class="control">
-        <div class="label-row"><label for="mean">Prior mean x̄</label><span><output id="mean-value" for="mean">10.0</output> <span class="units">m</span></span></div>
-        <input id="mean" type="range" min="-20" max="20" step="0.1" value="10">
+        <div class="label-row"><label for="mean">Prior mean x̄</label><span><output id="mean-value" for="mean">4.0</output> <span class="units">m</span></span></div>
+        <input id="mean" type="range" min="-20" max="20" step="0.1" value="4">
         <div class="limits"><span>−20 m</span><span>20 m</span></div>
       </div>
       <div class="control">
@@ -78,8 +78,8 @@
         <div class="limits"><span>0.1 m²</span><span>25 m²</span></div>
       </div>
       <div class="control">
-        <div class="label-row"><label for="z">Measurement z</label><span><output id="z-value" for="z">13.0</output> <span class="units">m</span></span></div>
-        <input id="z" type="range" min="-20" max="20" step="0.1" value="13">
+        <div class="label-row"><label for="z">Measurement z</label><span><output id="z-value" for="z">12.0</output> <span class="units">m</span></span></div>
+        <input id="z" type="range" min="-20" max="20" step="0.1" value="12">
         <div class="limits"><span>−20 m</span><span>20 m</span></div>
       </div>
       <div class="control">
@@ -99,13 +99,13 @@
         </div>
       </fieldset>
       <svg id="plot" role="img" aria-labelledby="plot-title plot-description"></svg>
-      <p class="caption">Vertical markers show the curve centers. Shading shows density, not a confidence interval. The horizontal axis is fixed at −40 to 40 m; the vertical axis adjusts to the parameters. Hiding curves leaves both axes unchanged.</p>
+      <p class="caption">Vertical markers show the curve centers. Shading shows density, not a confidence interval. The horizontal axis is fixed at −20 to 20 m; the vertical axis adjusts to the parameters. Hiding curves leaves both axes unchanged.</p>
       <div class="results">
         <div><div class="result-label">Kalman gain K</div><div class="result-value number" id="gain">0.800</div><div class="formula">M / (M + R)</div></div>
-        <div><div class="result-label">Estimate x̂ <span class="units">[m]</span></div><div class="result-value number" id="estimate">12.400</div><div class="formula">x̄ + K(z − x̄)</div></div>
+        <div><div class="result-label">Estimate x̂ <span class="units">[m]</span></div><div class="result-value number" id="estimate">10.400</div><div class="formula">x̄ + K(z − x̄)</div></div>
         <div><div class="result-label">Variance P <span class="units">[m²]</span></div><div class="result-value number" id="variance">0.800</div><div class="formula">MR / (M + R)</div></div>
       </div>
-      <p id="update" class="number">x̂ = 0.200 × 10.0 + 0.800 × 13.0 = 12.400 m.</p>
+      <p id="update" class="number">x̂ = 0.200 × 4.0 + 0.800 × 12.0 = 10.400 m.</p>
       <p id="announcement" class="visually-hidden" aria-live="polite" aria-atomic="true"></p>
     </section>
   </div>
@@ -161,8 +161,8 @@
     const width = svg.clientWidth, height = svg.clientHeight;
     const margin = {left:54, right:14, top:28, bottom:46};
     const innerW = width-margin.left-margin.right, innerH = height-margin.top-margin.bottom;
-    const low = -40;
-    const high = 40;
+    const low = -20;
+    const high = 20;
     const peak = Math.max(...series.map(s => 1/Math.sqrt(2*Math.PI*s.variance)))*1.12;
     const px = x => margin.left+(x-low)/(high-low)*innerW;
     const py = y => margin.top+innerH*(1-y/peak);
