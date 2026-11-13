@@ -121,14 +121,21 @@
 
             <article class="week-card" id="week12">
               <div class="week-meta"><span class="week-number">Week 12</span><time class="week-date" datetime="2026-11-13">November 13</time></div>
-              <div class="week-main"><h3>Kalman Filtering</h3><ul class="topic-list"><li>Stochastic state and measurement models</li><li>Noise covariance</li><li>Minimum-mean-square estimation</li><li>Continuous and discrete filters</li><li>Innovations and consistency</li></ul></div>
-              <div class="resource-panel"><span class="resource-label">Course materials</span><p>Estimate position and velocity from noisy data and compare raw measurements, an observer, and a Kalman filter.</p><div class="resource-actions"><a class="resource-link file-link is-pending" data-file="./notes/week12.pdf" data-released="false" data-ready-label="View course note" data-pending-label="Course note coming soon" aria-disabled="true"><span>Course note coming soon</span></a><a class="resource-link colab-link is-pending" data-notebook="notebooks/week12_kalman_filter.ipynb" data-released="false" data-pending-label="Notebook coming soon" aria-disabled="true"><span>Notebook coming soon</span></a><a class="resource-link" href="./demos/gaussian-position.html"><span>Interactive position estimation</span></a></div></div>
+              <div class="week-main"><h3>Probability and Gaussian Parameter Estimation</h3><ul class="topic-list"><li>Probability, random variables, mean, and covariance</li><li>Gaussian distributions, transformations, and conditioning</li><li>Prior belief and noisy measurements</li><li>Gaussian parameter estimation and posterior covariance</li><li>Error orthogonality, MAP, and MMSE estimates</li></ul></div>
+              <div class="resource-panel">
+                <span class="resource-label">Course materials</span>
+                <p>Combine a prior belief and a noisy measurement to estimate an unknown position. Derive the Gaussian update, interpret its covariance and error orthogonality, and explore MAP and MMSE estimation.</p>
+                <div class="resource-actions">
+                  <a class="resource-link file-link" data-file="./notes/week12.pdf" data-released="true" data-ready-label="View course note" href="./notes/week12.pdf"><span>View course note</span></a>
+                  <a class="resource-link" href="./demos/gaussian-position.html"><span>Interactive position estimation</span></a>
+                </div>
+              </div>
             </article>
 
             <article class="week-card" id="week13">
               <div class="week-meta"><span class="week-number">Week 13</span><time class="week-date" datetime="2026-11-20">November 20</time></div>
-              <div class="week-main"><h3>LQG Synthesis and Course Integration</h3><ul class="topic-list"><li>LQR plus Kalman estimation</li><li>Separation principle</li><li>Controller and estimator comparisons</li><li>Model mismatch and saturation</li><li>Integrated analysis-to-simulation workflow</li></ul></div>
-              <div class="resource-panel"><span class="resource-label">Course materials</span><p>Build an output-feedback LQG controller and compare nominal and mismatched-model performance.</p><div class="resource-actions"><a class="resource-link file-link is-pending" data-file="./notes/week13.pdf" data-released="false" data-ready-label="View course note" data-pending-label="Course note coming soon" aria-disabled="true"><span>Course note coming soon</span></a><a class="resource-link colab-link is-pending" data-notebook="notebooks/week13_lqg.ipynb" data-released="false" data-pending-label="Notebook coming soon" aria-disabled="true"><span>Notebook coming soon</span></a></div></div>
+              <div class="week-main"><h3>Kalman Filtering and LQG</h3><ul class="topic-list"><li>Dynamic stochastic state and measurement models</li><li>Kalman filter prediction and correction</li><li>Continuous and discrete filters; covariance and Riccati equations</li><li>Innovations and consistency</li><li>LQR and Kalman estimation: the separation principle</li><li>LQG output-feedback control</li></ul></div>
+              <div class="resource-panel"><span class="resource-label">Course materials</span><p>Estimate position and velocity from noisy measurements with a Kalman filter, then combine state estimation and LQR to design an LQG controller.</p><div class="resource-actions"><a class="resource-link file-link is-pending" data-file="./notes/week13.pdf" data-released="false" data-ready-label="View course note" data-pending-label="Course note coming soon" aria-disabled="true"><span>Course note coming soon</span></a><a class="resource-link colab-link is-pending" data-notebook="notebooks/week13_lqg.ipynb" data-released="false" data-pending-label="Notebook coming soon" aria-disabled="true"><span>Notebook coming soon</span></a></div></div>
             </article>
 
             <div class="break-card" role="note"><strong>Thanksgiving Break</strong><span>Friday, November 27 · No class</span></div>
