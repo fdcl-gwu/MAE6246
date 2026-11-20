@@ -1,6 +1,6 @@
 MAE 6246 - Homework 8
 Furuta Pendulum: Kalman Filtering, LQG Stabilization, and Reference Tracking
-Due Friday, November 20, 2026, at 10:00 AM Eastern Time
+Due Friday, December 4, 2026, at 9:00 AM Eastern Time
 
 START HERE
 1. Extract this bundle into one folder.
