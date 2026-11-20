@@ -134,8 +134,16 @@
 
             <article class="week-card" id="week13">
               <div class="week-meta"><span class="week-number">Week 13</span><time class="week-date" datetime="2026-11-20">November 20</time></div>
-              <div class="week-main"><h3>Kalman Filtering and LQG</h3><ul class="topic-list"><li>Dynamic stochastic state and measurement models</li><li>Kalman filter prediction and correction</li><li>Continuous and discrete filters; covariance and Riccati equations</li><li>Innovations and consistency</li><li>LQR and Kalman estimation: the separation principle</li><li>LQG output-feedback control</li></ul></div>
-              <div class="resource-panel"><span class="resource-label">Course materials</span><p>Estimate position and velocity from noisy measurements with a Kalman filter, then combine state estimation and LQR to design an LQG controller.</p><div class="resource-actions"><a class="resource-link file-link is-pending" data-file="./notes/week13.pdf" data-released="false" data-ready-label="View course note" data-pending-label="Course note coming soon" aria-disabled="true"><span>Course note coming soon</span></a><a class="resource-link colab-link is-pending" data-notebook="notebooks/week13_lqg.ipynb" data-released="false" data-pending-label="Notebook coming soon" aria-disabled="true"><span>Notebook coming soon</span></a></div></div>
+              <div class="week-main"><h3>Kalman Filtering, LQG, and Output Tracking</h3><ul class="topic-list"><li>Dynamic stochastic state and measurement models</li><li>Kalman prediction, correction, and steady-state Riccati equations</li><li>Innovations, covariance, and fixed-gain estimation</li><li>LQR and Kalman estimation: LQG and the separation principle</li><li>Reference trajectory tracking as stabilization of the tracking-error state</li><li>Time-varying and fixed references; feedforward and integral action</li></ul></div>
+              <div class="resource-panel">
+                <span class="resource-label">Course materials</span>
+                <p>Design a fixed-gain Kalman filter and an LQG controller for the ball and beam. Stabilize the equilibrium, then track sinusoidal and fixed position references with simulations and animations.</p>
+                <div class="resource-actions">
+                  <a class="resource-link file-link" data-file="./notes/week13.pdf" data-released="true" data-ready-label="View course note" href="./notes/week13.pdf"><span>View course note</span></a>
+                  <a class="resource-link colab-link" data-notebook="notebooks/week13/week13_ball_beam_lqg.ipynb" data-released="true" data-ready-label="Open in Colab" href="https://colab.research.google.com/github/fdcl-gwu/MAE6246/blob/main/notebooks/week13/week13_ball_beam_lqg.ipynb"><span>Open in Colab</span></a>
+                  <a class="resource-link" href="./examples/week13_mujoco.zip" download="week13_mujoco.zip"><span>Download notebook and mjsim.py</span></a>
+                </div>
+              </div>
             </article>
 
             <div class="break-card" role="note"><strong>Thanksgiving Break</strong><span>Friday, November 27 · No class</span></div>
